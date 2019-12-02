@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <declare-styleable name="CustomTextFont">
+        <attr name="fontName" format="string" />
+    </declare-styleable>
+
+<!--
+    <declare-styleable name="FlowLayout">
+        <attr name="horizontalSpacing" format="dimension" />
+        <attr name="verticalSpacing" format="dimension" />
+    </declare-styleable>
+-->
+
+    <declare-styleable name="FlowLayout_LayoutParams">
+        <attr name="layout_breakLine" format="boolean" />
+        <attr name="layout_horizontalSpacing" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ProgressWheel">
+        <attr name="matProg_progressIndeterminate" format="boolean" />
+        <attr name="matProg_barColor" format="color" />
+        <attr name="matProg_rimColor" format="color" />
+        <attr name="matProg_rimWidth" format="dimension" />
+        <attr name="matProg_spinSpeed" format="float" />
+        <attr name="matProg_barSpinCycleTime" format="integer" />
+        <attr name="matProg_circleRadius" format="dimension" />
+        <attr name="matProg_fillRadius" format="boolean" />
+        <attr name="matProg_barWidth" format="dimension" />
+        <attr name="matProg_linearProgress" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="FlowLayout"
+        tools:ignore="DuplicateDefinition">
+        <attr name="tbgFlow" format="boolean" />
+        <attr name="tbgChildSpacing" format="enum|dimension">
+            <enum name="auto" value="-65536" />
+        </attr>
+        <attr name="tbgChildSpacingForLastRow" format="enum|dimension">
+            <enum name="auto" value="-65536" />
+            <enum name="align" value="-65537" />
+        </attr>
+        <attr name="tbgRowSpacing" format="enum|dimension">
+            <enum name="auto" value="-65536" />
+        </attr>
+        <attr name="tbgRtl" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ToggleButtonGroup">
+        <attr name="android:checkedButton" />
+        <attr name="tbgCheckedButton" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="MultiSelectToggleGroup">
+        <attr name="tbgMaxSelect" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="MarkerButton">
+        <attr name="android:text" />
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+        <attr name="tbgMarkerColor" format="color" />
+        <attr name="tbgRadioStyle" format="boolean" />
+    </declare-styleable>
+
+</resources>
