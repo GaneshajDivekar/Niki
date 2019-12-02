@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ni.ki.custom.CBoldTextView
+        android:id="@+id/customText_tabTextt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:paddingLeft="@dimen/_1sdp"
+        android:paddingRight="@dimen/_1sdp"
+        android:paddingBottom="@dimen/_1sdp"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_12ssp" />
+
+    <RelativeLayout
+        android:id="@+id/rlForCountForBadgee"
+        android:layout_width="@dimen/_18sdp"
+        android:layout_height="@dimen/_18sdp"
+        android:layout_marginLeft="6dp"
+        android:layout_toRightOf="@+id/customText_tabTextt"
+        android:background="@drawable/counter_tab_background"
+        android:gravity="center"
+        android:padding="1dp">
+
+        <ni.ki.custom.CTextView
+            android:id="@+id/textview_badge_notificationnn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_15sdp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_10ssp" />
+    </RelativeLayout>
+</RelativeLayout>
