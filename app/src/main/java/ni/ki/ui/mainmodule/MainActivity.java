@@ -28,12 +28,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
     @Inject
     ViewModelProviderFactory factory;
-    TextView notificationTextCount, notificationTextCount2;
-    RelativeLayout rlForCountForBadge1, rlForCountForBadge2;
-    ActivityMainBinding activityMainBinding;
-    MainViewModel mainViewModel;
+    private TextView notificationTextCount, notificationTextCount2;
+    private RelativeLayout rlForCountForBadge1, rlForCountForBadge2;
+    private ActivityMainBinding activityMainBinding;
+    private MainViewModel mainViewModel;
     private ActivatePagerAdapter adapter;
-    Context context;
+    private Context context;
 
     @Override
     public int getBindingVariable() {

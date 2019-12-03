@@ -1,29 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="ni.ki.ui.mainmodule.fragment.drawfragmentModule.DrawFragmentViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
+        <ni.ki.custom.CBoldTextView
+            android:id="@+id/btnDraw"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="DrawSquare"
+            android:background="@drawable/buttongradientcolor"
+            android:text="Draw"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
+            android:textSize="@dimen/_14sdp"
+            android:onClick="@{() -> viewModel.clickOnDraw()}"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/btnPrint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ni.ki.custom.CBoldTextView
+            android:id="@+id/btnPrint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/buttongradientcolor"
+            android:text="Print"
+            android:textSize="@dimen/_14sdp"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
+            android:onClick="@{() -> viewModel.clickOnPrint()}"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/btnSelect"
+            app:layout_constraintStart_toEndOf="@+id/btnDraw"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ni.ki.custom.CBoldTextView
+            android:id="@+id/btnSelect"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/buttongradientcolor"
+            android:text="Select"
+            android:textSize="@dimen/_14sdp"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
+            android:onClick="@{() -> viewModel.clickSelect()}"
+            android:textColor="@color/white"
+           app:layout_constraintEnd_toStartOf="@+id/btnSave"
+            app:layout_constraintStart_toEndOf="@+id/btnPrint"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ni.ki.custom.CBoldTextView
+            android:id="@+id/btnSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/buttongradientcolor"
+            android:text="Save"
+            android:textSize="@dimen/_14sdp"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
+            android:onClick="@{() -> viewModel.clickOnSave()}"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnSelect"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/seekbar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="10dp"
+            android:max="100"
+            android:progress="0"
+            app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnSave" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_8sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/seekbar">
+
+            <ImageView
+                android:id="@+id/imageResult"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:background="@android:color/background_dark"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_android_black_24dp" />
+
+            <ImageView
+                android:id="@+id/drawingpane"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignStart="@+id/imageResult"
+                android:layout_alignTop="@+id/imageResult"
+                android:layout_alignEnd="@+id/imageResult"
+                android:layout_alignBottom="@+id/imageResult"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY" />
+        </RelativeLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

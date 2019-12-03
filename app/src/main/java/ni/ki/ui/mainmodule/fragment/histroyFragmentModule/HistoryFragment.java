@@ -2,39 +2,45 @@ package ni.ki.ui.mainmodule.fragment.histroyFragmentModule;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+
 import ni.ki.BR;
 
 import ni.ki.R;
 import ni.ki.ViewModelProviderFactory;
-import ni.ki.databinding.FragmentDrawsquareBinding;
+import ni.ki.data.local.db.AppDatabase;
+import ni.ki.data.model.db.HistoryDaoEntity;
 import ni.ki.databinding.FragmentHistoryBinding;
 import ni.ki.ui.base.BaseFragment;
-import ni.ki.ui.mainmodule.fragment.drawfragmentModule.DrawFragmentViewModel;
+import ni.ki.ui.mainmodule.Coordinates;
+import ni.ki.ui.mainmodule.fragment.histroyFragmentModule.adapter.HistroyFragmentAdapter;
 
 
-public class HistoryFragment extends BaseFragment<FragmentHistoryBinding,HistroyFragmentViewModel>implements HistroyFragmentNavigator {
+public class HistoryFragment extends BaseFragment<FragmentHistoryBinding, HistoryFragmentViewModel> implements HistoryFragmentNavigator {
 
     View view;
     @Inject
     ViewModelProviderFactory factory;
-    private HistroyFragmentViewModel histroyFragmentViewModel;
+    private HistoryFragmentViewModel histroyFragmentViewModel;
     private FragmentHistoryBinding fragmentHistoryBinding;
     private Context mContext;
+    List<HistoryDaoEntity> coordinatesHistoryList = new ArrayList<>();
+    List<Coordinates> arrayList = new ArrayList<>();
+    HistroyFragmentAdapter histroyFragmentAdapter;
 
 
     @Override
@@ -48,8 +54,8 @@ public class HistoryFragment extends BaseFragment<FragmentHistoryBinding,Histroy
     }
 
     @Override
-    public HistroyFragmentViewModel getViewModel() {
-        histroyFragmentViewModel = ViewModelProviders.of(this, factory).get(HistroyFragmentViewModel.class);
+    public HistoryFragmentViewModel getViewModel() {
+        histroyFragmentViewModel = ViewModelProviders.of(this, factory).get(HistoryFragmentViewModel.class);
         return histroyFragmentViewModel;
     }
 
@@ -57,6 +63,7 @@ public class HistoryFragment extends BaseFragment<FragmentHistoryBinding,Histroy
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         fragmentHistoryBinding = getViewDataBinding();
+        histroyFragmentViewModel.setNavigator(this);
         initView();
 
     }
@@ -64,9 +71,29 @@ public class HistoryFragment extends BaseFragment<FragmentHistoryBinding,Histroy
 
     public void initView() {
         mContext = getActivity();
+        initData();
     }
 
     private void initData() {
+        coordinatesHistoryList = AppDatabase.getDatabase(mContext).interfaceDao().getAllCoordinteHistory();
+        String data = "";
+
+        for (int i = 0; i < coordinatesHistoryList.size(); i++) {
+            data = coordinatesHistoryList.get(i).getHistory_cordinates();
+        }
+        Gson gson = new Gson();
+        arrayList = gson.fromJson(data, new TypeToken<List<Coordinates>>() {
+        }.getType());
+
+
+        if (arrayList != null) {
+            histroyFragmentAdapter = new HistroyFragmentAdapter(arrayList);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
+            fragmentHistoryBinding.recyclerCoordinates.setLayoutManager(mLayoutManager);
+            fragmentHistoryBinding.recyclerCoordinates.setItemAnimator(new DefaultItemAnimator());
+            fragmentHistoryBinding.recyclerCoordinates.setAdapter(histroyFragmentAdapter);
+
+        }
 
 
     }

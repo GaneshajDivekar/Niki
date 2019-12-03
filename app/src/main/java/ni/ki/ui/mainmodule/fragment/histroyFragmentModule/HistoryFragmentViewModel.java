@@ -4,9 +4,9 @@ import ni.ki.data.DataManager;
 import ni.ki.ui.base.BaseViewModel;
 import ni.ki.utili.rx.SchedulerProvider;
 
-public class HistroyFragmentViewModel extends BaseViewModel<HistroyFragmentNavigator> {
+public class HistoryFragmentViewModel extends BaseViewModel<HistoryFragmentNavigator> {
 
-    public HistroyFragmentViewModel(DataManager dataManager,SchedulerProvider schedulerProvider) {
+    public HistoryFragmentViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
         super( dataManager,schedulerProvider);
 
     }
