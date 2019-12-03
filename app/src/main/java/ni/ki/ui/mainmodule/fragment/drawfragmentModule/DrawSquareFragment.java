@@ -182,6 +182,7 @@ public class DrawSquareFragment extends BaseFragment<FragmentDrawsquareBinding, 
                 stringBuilder.append("(" + coordinates.getX4());
                 stringBuilder.append("," + coordinates.getY4() + ")");
                 stringBuilder.append("\n");
+
             }
 
             AlertDialog.Builder builder1 = new AlertDialog.Builder(mContext);
@@ -220,31 +221,32 @@ public class DrawSquareFragment extends BaseFragment<FragmentDrawsquareBinding, 
 
     @Override
     public void clickOnSave() {
+        if(coordinates!=null)
+        {
+            coordinates.setX1(nx1);
+            coordinates.setX2(nx2 + 1);
+            coordinates.setY1(ny1);
+            coordinates.setY2(ny2 + 1);
+            arrayList.add(selectedPosition, coordinates);
+            x2 = nx2;
+            y2 = ny2;
+            finalizeDrawing();
+            saveJsonofCoordinates(arrayList);
+        }else{
+
+        }
 
 
-        coordinates.setX1(nx1);
-        coordinates.setX2(nx2 + 1);
-        coordinates.setY1(ny1);
-        coordinates.setY2(ny2 + 1);
-        arrayList.add(selectedPosition, coordinates);
-        x2 = nx2;
-        y2 = ny2;
-        finalizeDrawing();
-
-
-        saveJsonofCoordinates(arrayList);
     }
 
     private void saveJsonofCoordinates(ArrayList<Coordinates> arrayList) {
-        if (arrayList.size() <= 0) {
+
             HistoryDaoEntity historyDaoEntity = new HistoryDaoEntity();
             Gson gson = new Gson();
             String json = gson.toJson(arrayList);
             historyDaoEntity.setHistory_cordinates(json);
             AppDatabase.getDatabase(mContext).interfaceDao().insertCoordinates(historyDaoEntity);
-        } else {
-            //Toast.makeText(mContext,"Please draw something",Toast.LENGTH_SHORT).show();
-        }
+
     }
 
     @Override

@@ -64,10 +64,15 @@ public class HistoryFragment extends BaseFragment<FragmentHistoryBinding, Histor
         super.onViewCreated(view, savedInstanceState);
         fragmentHistoryBinding = getViewDataBinding();
         histroyFragmentViewModel.setNavigator(this);
-        initView();
+
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initView();
+    }
 
     public void initView() {
         mContext = getActivity();

@@ -1,9 +1,15 @@
 package ni.ki.ui.mainmodule.fragment.histroyFragmentModule.adapter;
 
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,16 +24,12 @@ public class HistroyFragmentAdapter extends RecyclerView.Adapter<HistroyFragment
     private List<Coordinates> coordinatesList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView txtX1, txtX2, txtY1, txtY2,txtX3,txtY3;
+        public ImageView img;
 
         public MyViewHolder(View view) {
             super(view);
-            txtX1 =  view.findViewById(R.id.txtX1);
-            txtX2 = view.findViewById(R.id.txtX2);
-            txtX3 = view.findViewById(R.id.txtX3);
-            txtY1 =  view.findViewById(R.id.txtY1);
-            txtY2 =  view.findViewById(R.id.txtY2);
-            txtY3= view.findViewById(R.id.txtY3);
+
+            img =view.findViewById(R.id.img);
         }
     }
 
@@ -47,12 +49,49 @@ public class HistroyFragmentAdapter extends RecyclerView.Adapter<HistroyFragment
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Coordinates coordinates = coordinatesList.get(position);
-        holder.txtX1.setText("X1 : "+coordinates.getX1());
-        holder.txtX2.setText("X2 : "+coordinates.getX2());
-        holder.txtY1.setText("Y1 : "+coordinates.getY1());
-        holder.txtY2.setText("Y2 : "+coordinates.getY2());
-        holder.txtY3.setText("Y3 : "+coordinates.getY1());
-        holder.txtX3.setText("x3 : "+coordinates.getY2());
+
+        drawSquare(holder,position,coordinates);
+    }
+
+    private void drawSquare(MyViewHolder holder, int position, Coordinates coordinates) {
+        // Initialize a new Bitmap object
+        Bitmap bitmap = Bitmap.createBitmap(
+                (int) coordinates.getWidth(), // Width
+                (int) coordinates.getHeight(), // Height
+                Bitmap.Config.ARGB_8888 // Config
+        );
+
+        // Initialize a new Canvas instance
+        Canvas canvas = new Canvas(bitmap);
+
+        // Draw a solid color to the canvas background
+        canvas.drawColor(Color.LTGRAY);
+
+        // Initialize a new Paint instance to draw the Rectangle
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.YELLOW);
+        paint.setAntiAlias(true);
+
+        // Set a pixels value to padding around the rectangle
+        int padding = 50;
+
+
+        // Initialize a new Rect object
+        Rect rectangle = new Rect(
+                padding, // Left
+                padding, // Top
+                canvas.getWidth() - padding, // Right
+                canvas.getHeight() - padding // Bottom
+        );
+
+
+        // Finally, draw the rectangle on the canvas
+        canvas.drawRect(rectangle,paint);
+
+        // Display the newly created bitmap on app interface
+        holder.img.setImageBitmap(bitmap);
+
     }
 
     @Override

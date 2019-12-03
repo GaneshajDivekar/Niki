@@ -4,6 +4,27 @@ public class Coordinates {
     private int x1,x2,y1,y2;
     private int x3,x4,y3,y4;
 
+    public double getWidth() {
+        return  width=Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));
+
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public double getHeight() {
+       // return height;
+       return height=Math.sqrt((x4-x3)*(x4-x3) + (y4-y3)*(y4-y3));
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    double width,height;
+
+
     public int getX1() {
         return x1;
     }
