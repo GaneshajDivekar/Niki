@@ -49,12 +49,10 @@ public class HistroyFragmentAdapter extends RecyclerView.Adapter<HistroyFragment
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Coordinates coordinates = coordinatesList.get(position);
-
         drawSquare(holder,position,coordinates);
     }
 
     private void drawSquare(MyViewHolder holder, int position, Coordinates coordinates) {
-        // Initialize a new Bitmap object
         Bitmap bitmap = Bitmap.createBitmap(
                 (int) coordinates.getWidth(), // Width
                 (int) coordinates.getHeight(), // Height
@@ -65,12 +63,12 @@ public class HistroyFragmentAdapter extends RecyclerView.Adapter<HistroyFragment
         Canvas canvas = new Canvas(bitmap);
 
         // Draw a solid color to the canvas background
-        canvas.drawColor(Color.LTGRAY);
+        canvas.drawColor(Color.WHITE);
 
         // Initialize a new Paint instance to draw the Rectangle
         Paint paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.YELLOW);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(Color.RED);
         paint.setAntiAlias(true);
 
         // Set a pixels value to padding around the rectangle
@@ -96,10 +94,11 @@ public class HistroyFragmentAdapter extends RecyclerView.Adapter<HistroyFragment
 
     @Override
     public int getItemCount() {
-        if(coordinatesList.size()>0) {
-            return coordinatesList.size();
-        }else {
+        if (coordinatesList == null) {
             return 0;
-        }
+        } else
+            return coordinatesList.size();
+
+
     }
 }

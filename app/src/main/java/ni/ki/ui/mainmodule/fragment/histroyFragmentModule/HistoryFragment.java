@@ -64,41 +64,31 @@ public class HistoryFragment extends BaseFragment<FragmentHistoryBinding, Histor
         super.onViewCreated(view, savedInstanceState);
         fragmentHistoryBinding = getViewDataBinding();
         histroyFragmentViewModel.setNavigator(this);
-
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
+        mContext = getActivity();
         initView();
+
     }
+
 
     public void initView() {
-        mContext = getActivity();
-        initData();
-    }
-
-    private void initData() {
+        coordinatesHistoryList.clear();
+        arrayList.clear();
         coordinatesHistoryList = AppDatabase.getDatabase(mContext).interfaceDao().getAllCoordinteHistory();
         String data = "";
-
         for (int i = 0; i < coordinatesHistoryList.size(); i++) {
             data = coordinatesHistoryList.get(i).getHistory_cordinates();
-        }
-        Gson gson = new Gson();
-        arrayList = gson.fromJson(data, new TypeToken<List<Coordinates>>() {
-        }.getType());
-
-
-        if (arrayList != null) {
-            histroyFragmentAdapter = new HistroyFragmentAdapter(arrayList);
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
-            fragmentHistoryBinding.recyclerCoordinates.setLayoutManager(mLayoutManager);
-            fragmentHistoryBinding.recyclerCoordinates.setItemAnimator(new DefaultItemAnimator());
-            fragmentHistoryBinding.recyclerCoordinates.setAdapter(histroyFragmentAdapter);
+            Gson gson = new Gson();
+            arrayList.addAll(gson.fromJson(data, new TypeToken<List<Coordinates>>() {
+            }.getType()));
 
         }
+
+
+        histroyFragmentAdapter = new HistroyFragmentAdapter(arrayList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
+        fragmentHistoryBinding.recyclerCoordinates.setLayoutManager(mLayoutManager);
+        fragmentHistoryBinding.recyclerCoordinates.setItemAnimator(new DefaultItemAnimator());
+        fragmentHistoryBinding.recyclerCoordinates.setAdapter(histroyFragmentAdapter);
 
 
     }

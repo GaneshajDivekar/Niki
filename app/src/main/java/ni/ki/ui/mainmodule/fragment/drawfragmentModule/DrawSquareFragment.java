@@ -74,6 +74,7 @@ public class DrawSquareFragment extends BaseFragment<FragmentDrawsquareBinding, 
     ArrayList<Coordinates> arrayList = new ArrayList<Coordinates>();
     private Coordinates coordinates;
     private int selectedPosition;
+    HistoryDaoEntity historyDaoEntity;
 
 
     @Override
@@ -279,17 +280,12 @@ public class DrawSquareFragment extends BaseFragment<FragmentDrawsquareBinding, 
                     coordinates.setX4(x2);
                     coordinates.setY3(y2);
                     coordinates.setY4(y1);*/
-                    // String cordinates = x1 + "," + x2 + "," + y1 + "," + y2;
+
                     arrayList.add(coordinates);
                     saveJsonofCoordinates(arrayList);
                     break;
 
             }
-            /*
-             * Return 'true' to indicate that the event have been consumed.
-             * If auto-generated 'false', your code can detect ACTION_DOWN only,
-             * cannot detect ACTION_MOVE and ACTION_UP.
-             */
 
         } else {
             int action = event.getAction();
