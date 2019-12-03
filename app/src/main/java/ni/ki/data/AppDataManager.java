@@ -9,7 +9,6 @@ import javax.inject.Singleton;
 
 import ni.ki.data.local.db.AppDatabase;
 import ni.ki.data.local.db.DbHelper;
-import ni.ki.data.local.prefs.PreferencesHelper;
 import ni.ki.data.remote.ApiHelper;
 
 
@@ -27,15 +26,13 @@ public class AppDataManager implements DataManager {
 
     private final Gson mGson;
 
-    private final PreferencesHelper mPreferencesHelper;
 
     private AppDatabase mAppDatabase;
 
     @Inject
-    public AppDataManager(Context context, DbHelper dbHelper, PreferencesHelper preferencesHelper, ApiHelper apiHelper, Gson gson) {
+    public AppDataManager(Context context, DbHelper dbHelper, ApiHelper apiHelper, Gson gson) {
         mContext = context;
         mDbHelper = dbHelper;
-        mPreferencesHelper = preferencesHelper;
         mApiHelper = apiHelper;
         mGson = gson;
         mAppDatabase = AppDatabase.getDatabase(mContext);

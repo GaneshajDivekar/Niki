@@ -7,6 +7,8 @@ import javax.inject.Inject;
 
 import ni.ki.data.DataManager;
 import ni.ki.ui.mainmodule.MainViewModel;
+import ni.ki.ui.mainmodule.fragment.drawfragmentModule.DrawFragmentViewModel;
+import ni.ki.ui.mainmodule.fragment.histroyFragmentModule.HistroyFragmentViewModel;
 import ni.ki.utili.rx.SchedulerProvider;
 
 
@@ -27,6 +29,10 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
         if (modelClass.isAssignableFrom(MainViewModel.class)) {
             //noinspection unchecked
             return (T) new MainViewModel(dataManager, schedulerProvider);
+        }else if(modelClass.isAssignableFrom(DrawFragmentViewModel.class)){
+            return (T) new DrawFragmentViewModel(dataManager, schedulerProvider);
+        }else if(modelClass.isAssignableFrom(HistroyFragmentViewModel.class)){
+            return (T) new HistroyFragmentViewModel(dataManager, schedulerProvider);
         }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }

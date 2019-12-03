@@ -19,8 +19,6 @@ import ni.ki.data.DataManager;
 import ni.ki.data.local.db.AppDatabase;
 import ni.ki.data.local.db.AppDbHelper;
 import ni.ki.data.local.db.DbHelper;
-import ni.ki.data.local.prefs.AppPreferencesHelper;
-import ni.ki.data.local.prefs.PreferencesHelper;
 import ni.ki.data.remote.ApiHeader;
 import ni.ki.data.remote.ApiHelper;
 import ni.ki.data.remote.AppApiHelper;
@@ -103,16 +101,11 @@ public class AppModule {
         return AppConstants.PREF_NAME;
     }
 
-    @Provides
-    @Singleton
-    PreferencesHelper providePreferencesHelper(AppPreferencesHelper appPreferencesHelper) {
-        return appPreferencesHelper;
-    }
+
 
     @Provides
     @Singleton
-    ApiHeader.ProtectedApiHeader provideProtectedApiHeader(@ApiInfo String apiKey,
-                                                           PreferencesHelper preferencesHelper) {
+    ApiHeader.ProtectedApiHeader provideProtectedApiHeader(@ApiInfo String apiKey) {
         return new ApiHeader.ProtectedApiHeader(
                 apiKey);
     }
