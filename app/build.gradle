@@ -16,19 +16,13 @@ android {
     }
     buildTypes {
         debug {
-            //buildConfigField("String", "BASE_URL", "\"http://app.sciffer.com/CCMUAT/api\"")
-            //buildConfigField("String", "BASE_URL", "\"http://app.sciffer.com/CCMDEV/API\"")
-            buildConfigField("String", "BASE_URL", "\"https://app-uat.hitachi-payments.com/CCMUAT/api\"")
-            //buildConfigField("String", "BASE_URL", "\"https://app-uat.hitachi-payments.com/CCMDEV/api\"")
+            buildConfigField("String", "BASE_URL", "\"ABCXYZ123TEST\"")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            //buildConfigField("String", "BASE_URL", "\"http://app.sciffer.com/CCMUAT/API\"")
-//            buildConfigField("String", "BASE_URL", "\"http://app.sciffer.com/CCMDEV/API\"")
-            buildConfigField("String", "BASE_URL", "\"https://app-uat.hitachi-payments.com/CCMUAT/api\"")
-            //buildConfigField("String", "BASE_URL", "\"https://app-uat.hitachi-payments.com/CCMDEV/api\"")
+            buildConfigField("String", "BASE_URL", "\"ABCXYZ123TEST\"")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
 
